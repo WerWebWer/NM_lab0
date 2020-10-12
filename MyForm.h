@@ -91,6 +91,11 @@ namespace Graph {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Делений;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Удвоений;
 	private: System::Windows::Forms::CheckBox^ checkBox1;
+	private: System::Windows::Forms::TextBox^ textBox10;
+	private: System::Windows::Forms::Label^ label12;
+	private: System::Windows::Forms::Label^ label13;
+	private: System::Windows::Forms::TextBox^ textBox11;
+	private: System::Windows::Forms::CheckBox^ checkBox2;
 
 	protected:
 	private: System::ComponentModel::IContainer^  components;
@@ -119,9 +124,9 @@ namespace Graph {
 			this->V_i_i = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Vi_Vii = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->ViUTCH = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->LOC = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Делений = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Удвоений = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->LOC = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
 			this->label2 = (gcnew System::Windows::Forms::Label());
@@ -145,6 +150,11 @@ namespace Graph {
 			this->label10 = (gcnew System::Windows::Forms::Label());
 			this->label11 = (gcnew System::Windows::Forms::Label());
 			this->checkBox1 = (gcnew System::Windows::Forms::CheckBox());
+			this->textBox10 = (gcnew System::Windows::Forms::TextBox());
+			this->label12 = (gcnew System::Windows::Forms::Label());
+			this->label13 = (gcnew System::Windows::Forms::Label());
+			this->textBox11 = (gcnew System::Windows::Forms::TextBox());
+			this->checkBox2 = (gcnew System::Windows::Forms::CheckBox());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -249,6 +259,10 @@ namespace Graph {
 			this->Удвоений->ReadOnly = true;
 			this->Удвоений->Width = 50;
 			// 
+			// LOC
+			// 
+			this->LOC->Name = L"LOC";
+			// 
 			// label1
 			// 
 			this->label1->AutoSize = true;
@@ -337,6 +351,7 @@ namespace Graph {
 			this->comboBox1->Name = L"comboBox1";
 			this->comboBox1->Size = System::Drawing::Size(121, 21);
 			this->comboBox1->TabIndex = 15;
+			this->comboBox1->Text = L"Test";
 			this->comboBox1->SelectedIndexChanged += gcnew System::EventHandler(this, &MyForm::comboBox1_SelectedIndexChanged);
 			// 
 			// textBox6
@@ -402,7 +417,7 @@ namespace Graph {
 			this->label5->Name = L"label5";
 			this->label5->Size = System::Drawing::Size(152, 13);
 			this->label5->TabIndex = 21;
-			this->label5->Text = L"Точность выходв нв границу";
+			this->label5->Text = L"Точность выходв нa границу";
 			// 
 			// textBox8
 			// 
@@ -423,7 +438,7 @@ namespace Graph {
 			// label9
 			// 
 			this->label9->AutoSize = true;
-			this->label9->Location = System::Drawing::Point(278, 98);
+			this->label9->Location = System::Drawing::Point(275, 98);
 			this->label9->Name = L"label9";
 			this->label9->Size = System::Drawing::Size(150, 13);
 			this->label9->TabIndex = 24;
@@ -458,11 +473,65 @@ namespace Graph {
 			this->checkBox1->TabIndex = 27;
 			this->checkBox1->UseVisualStyleBackColor = true;
 			// 
+			// textBox10
+			// 
+			this->textBox10->Location = System::Drawing::Point(278, 196);
+			this->textBox10->Name = L"textBox10";
+			this->textBox10->Size = System::Drawing::Size(20, 20);
+			this->textBox10->TabIndex = 28;
+			this->textBox10->Text = L"1";
+			this->textBox10->Visible = false;
+			// 
+			// label12
+			// 
+			this->label12->AutoSize = true;
+			this->label12->Location = System::Drawing::Point(275, 180);
+			this->label12->Name = L"label12";
+			this->label12->Size = System::Drawing::Size(13, 13);
+			this->label12->TabIndex = 29;
+			this->label12->Text = L"a";
+			this->label12->Visible = false;
+			// 
+			// label13
+			// 
+			this->label13->AutoSize = true;
+			this->label13->Location = System::Drawing::Point(301, 180);
+			this->label13->Name = L"label13";
+			this->label13->Size = System::Drawing::Size(20, 13);
+			this->label13->TabIndex = 30;
+			this->label13->Text = L"U\'.";
+			this->label13->Visible = false;
+			// 
+			// textBox11
+			// 
+			this->textBox11->Location = System::Drawing::Point(304, 196);
+			this->textBox11->Name = L"textBox11";
+			this->textBox11->Size = System::Drawing::Size(20, 20);
+			this->textBox11->TabIndex = 31;
+			this->textBox11->Text = L"0";
+			this->textBox11->Visible = false;
+			// 
+			// checkBox2
+			// 
+			this->checkBox2->AutoSize = true;
+			this->checkBox2->Location = System::Drawing::Point(278, 224);
+			this->checkBox2->Name = L"checkBox2";
+			this->checkBox2->Size = System::Drawing::Size(118, 17);
+			this->checkBox2->TabIndex = 32;
+			this->checkBox2->Text = L"Фазовый портрет";
+			this->checkBox2->UseVisualStyleBackColor = true;
+			this->checkBox2->Visible = false;
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1123, 652);
+			this->Controls->Add(this->checkBox2);
+			this->Controls->Add(this->textBox11);
+			this->Controls->Add(this->label13);
+			this->Controls->Add(this->label12);
+			this->Controls->Add(this->textBox10);
 			this->Controls->Add(this->checkBox1);
 			this->Controls->Add(this->label11);
 			this->Controls->Add(this->label10);
@@ -489,7 +558,7 @@ namespace Graph {
 			this->Controls->Add(this->dataGridView1);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->zedGraphControl1);
-			this->Name = L"Graph";
+			this->Name = L"MyForm";
 			this->Text = L"Graph";
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
 			this->ResumeLayout(false);
@@ -529,6 +598,10 @@ namespace Graph {
 		// Начальные условия по U
 		double u = Convert::ToDouble(textBox7->Text);
 		double _u = Convert::ToDouble(textBox7->Text);
+		//
+		double a = Convert::ToDouble(textBox10->Text);
+		//
+		double _u2 = Convert::ToDouble(textBox11->Text);
 		// Максимальная погрешность
 		double e_loc = Convert::ToDouble(textBox6->Text);
 		// Максимальное количество шагов
@@ -539,6 +612,8 @@ namespace Graph {
 		double xmax_limit = xmax + 0.1;
 
 		Pos pos(xmin, u);
+		pos.u2 = _u2;
+		pos.a = a;
 		double x = xmin;
 		int i = 0; // Счетчик итераций
 
@@ -546,7 +621,7 @@ namespace Graph {
 
 		do {
 			//Добавление на график
-			f1_list->Add(pos.x, pos.u);
+			f1_list->Add(((checkBox2->Checked == true && numTask == 2) ? pos.u2 : pos.x), pos.u);
 			//Печать в таблицу
 			dataGridView1->Rows->Add();
 			dataGridView1->Rows[i]->Cells[0]->Value = i; 			
@@ -570,7 +645,7 @@ namespace Graph {
 			}
 			else x += h;
 
-			auto get = start(pos, h, numTask, checkBox1->Checked, e_loc); //first - pos | second - h */ 2
+			auto get = start(pos, h, a, numTask, checkBox1->Checked, e_loc); //first - pos | second - h */ 2
 			pos = get.first;
 			if (get.second > 0) {
 				countMul += get.second;
@@ -591,7 +666,7 @@ namespace Graph {
 			i++;
 		} while (((checkBox1->Checked) ? (x <= xmax) : (x < xmax)) && i < maxI+1); //TODO: ГАВНО ПОЛНОЕ ПЕРЕДЕЛАТЬ
 
-		label11->Text = "n = " + i + "\nЧисло удвоений: " + countMul + "\nЧисло делений: " + countDev + "\nМаксимальный шаг " + maxH + "\nМинимальный шаг: " + minH + "\nМаксимальная ошибка шаг: " + maxE;
+		label11->Text = "n = " + (i - 1) + "\nЧисло удвоений: " + countMul + "\nЧисло делений: " + countDev + "\nМаксимальный шаг " + maxH + "\nМинимальный шаг: " + minH + "\nМаксимальная ошибка шаг: " + maxE;
 
 		if (numTask == 0) {
 			double x = xmin;
@@ -651,6 +726,19 @@ private: System::Void textBox2_TextChanged(System::Object^ sender, System::Event
 }
 private: System::Void comboBox1_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
 	numTask = comboBox1->SelectedIndex;
+	if (numTask == 2) {
+		textBox10->Visible = true;
+		label12->Visible = true;
+		label13->Visible = true;
+		textBox11->Visible = true;
+		checkBox2->Visible = true;
+	} else {
+		textBox10->Visible = false;
+		label12->Visible = false;
+		label13->Visible = false;
+		textBox11->Visible = false;
+		checkBox2->Visible = false;
+	}
 }
 private: System::Void label5_Click(System::Object^ sender, System::EventArgs^ e) {
 }
