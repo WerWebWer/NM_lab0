@@ -51,7 +51,8 @@ double func_test(double x, double u) {
 }
 double func_main1(double x, double u) {
 	double res;
-	res = (u * u) / (1 + x * x * x * x) + u - u * u * u * sin(10 * x);
+	//res = (u * u) / (1 + x * x * x * x) + u - u * u * u * sin(10 * x);
+	res = ((u * u) * (x * x * x + 1)) / (1 + x * x * x * x * x) + u - u * u * u * sin(10 * x);
 	return res;
 }
 double func_main2_1(double u_2) {
@@ -147,8 +148,8 @@ std::pair<Pos, int> start(Pos pos, double h, double a, int func, bool epsilon = 
 			// подсчет погрешности для h */ 2
 			countDev++;
 
-			uslovie = abs(nextPos.u - nextPos_h2.u) / 15;
-			nextPos.e = uslovie;
+			uslovie = abs(nextPos.u - nextPos_h2.u) *10;
+			nextPos.e = uslovie/10;
 		} while (uslovie >= e);
 
 		nextPos.v = nextPos_h2.u;

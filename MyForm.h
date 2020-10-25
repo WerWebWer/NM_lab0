@@ -186,9 +186,9 @@ namespace Graph {
 			// dataGridView1
 			// 
 			this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dataGridView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(9) {
+			this->dataGridView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(10) {
 				this->I, this->Xi,
-					this->hi, this->Vi, this->V_i_i, this->Vi_Vii, this->ViUTCH, this->Делений, this->Удвоений
+					this->hi, this->Vi, this->V_i_i, this->Vi_Vii, this->LOC, this->ViUTCH, this->Делений, this->Удвоений
 			});
 			this->dataGridView1->Location = System::Drawing::Point(559, 261);
 			this->dataGridView1->Name = L"dataGridView1";
@@ -203,6 +203,13 @@ namespace Graph {
 			this->I->ReadOnly = true;
 			this->I->Width = 50;
 			// 
+			// 
+			// LOC
+			// 
+			this->LOC->HeaderText = L"ОЛП";
+			this->LOC->Name = L"LOC";
+			this->LOC->ReadOnly = true;
+			this->LOC->Width = 50;
 			// Xi
 			// 
 			this->Xi->HeaderText = L"Xi";
@@ -630,10 +637,11 @@ namespace Graph {
 			dataGridView1->Rows[i]->Cells[3]->Value = pos.u;
 			dataGridView1->Rows[i]->Cells[4]->Value = pos.v;
 			dataGridView1->Rows[i]->Cells[5]->Value = abs(pos.u - pos.v);
-			dataGridView1->Rows[i]->Cells[6]->Value = func_test_(pos.x,pos.u);
-			dataGridView1->Rows[i]->Cells[7]->Value = 0;
+			dataGridView1->Rows[i]->Cells[6]->Value = numTask != 0 ? pos.e : abs(func_test_(pos.x, pos.u)-pos.u);//abs(pos.u - pos.v)/32;
+			dataGridView1->Rows[i]->Cells[7]->Value = func_test_(pos.x,pos.u);
 			dataGridView1->Rows[i]->Cells[8]->Value = 0;
-
+			dataGridView1->Rows[i]->Cells[9]->Value = 0;
+			pos.e = numTask == 0 ? abs(func_test_(pos.x, pos.u) - pos.u) : pos.e;
 			if (x != xmax) {
 				if (x + h > xmax) {
 					//if (abs(xmax - x - h) < 0.0000001)
@@ -649,13 +657,17 @@ namespace Graph {
 			pos = get.first;
 			if (get.second > 0) {
 				countMul += get.second;
-				dataGridView1->Rows[i]->Cells[8]->Value = get.second;
+				dataGridView1->Rows[i]->Cells[9]->Value = get.second;
 				h *= 2;
 			}
 			if (get.second < 0) { 
 				countDev -= get.second;
-				dataGridView1->Rows[i]->Cells[7]->Value = -get.second;
-				h /= 2;
+				dataGridView1->Rows[i]->Cells[8]->Value = -get.second;
+				/*if (pos.u > 2.29) h *= 2;
+				else */
+					for (int i = 0; i < -get.second; i++) {
+						h /= 2;
+					}
 			}
 			if (maxE < pos.e) maxE = pos.e;
 			if (h > maxH) maxH = h;
@@ -684,7 +696,7 @@ namespace Graph {
 
 		zedGraphControl1->AxisChange();
 		zedGraphControl1->Invalidate();
-		LineItem Curve1 = panel->AddCurve("Численное решение", f1_list, Color::Red,SymbolType::Plus);
+		LineItem Curve1 = panel->AddCurve("Численное решение", f1_list, Color::Red,SymbolType::None);
 		//"n \nЧисло удвоений: \nЧисло делений: \nМаксимальный шаг: \nМинимальный шаг: "
 
 
